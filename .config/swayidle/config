@@ -1,0 +1,5 @@
+-w
+before-sleep 'swaylock'
+timeout 301 'niri msg action power-off-monitors'
+timeout 60 'swaylock'
+timeout 300 'systemctl hybrid-sleep'

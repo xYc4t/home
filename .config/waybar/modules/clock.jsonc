@@ -1,0 +1,6 @@
+{
+  "clock": {
+    "format": "[{:%d/%m/%y - %H:%M}]",
+    "tooltip": false
+  }
+}

@@ -1,0 +1,120 @@
+* {
+  font-family: FiraCode Nerd Font Propo;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+window#waybar {
+  background-color: #282828;
+  color: #1D2021;
+  border-bottom: 1px solid #3C3836;
+}
+
+button {
+  box-shadow: inset 0 -3px transparent;
+  border: none;
+  border-radius: 0;
+}
+
+button:hover {
+  background: inherit;
+  box-shadow: inset 0 -3px #8EC07C;
+}
+
+#workspaces,
+#user {
+  margin-right: 10px;
+}
+
+#workspaces button {
+  padding: 0 5px 5px;
+  background-color: rgba(131, 165, 152, 0.15);
+  color: #EBDBB2;
+}
+
+#workspaces button:hover {
+  background: rgba(142, 192, 124, 0.25);
+}
+
+#workspaces button.focused {
+  font-weight: bolder;
+  background-color: #8EC07C;
+  color: #1D2021;
+}
+
+#workspaces button.urgent {
+  background-color: #FB4934;
+}
+
+#window {
+  color: #8EC07C;
+}
+
+#user,
+#idle_inhibitor {
+  color: #EBDBB2;
+}
+
+#clock,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#wireplumber,
+#tray,
+#idle_inhibitor {
+  padding: 0 10px;
+}
+
+#clock {
+  background-color: #689D6A;
+}
+
+#cpu {
+  background-color: #98971A;
+}
+
+#memory {
+  background-color: #B16286;
+}
+
+#disk {
+  background-color: #D65D0E;
+}
+
+#temperature {
+  background-color: #D79921;
+}
+
+#wireplumber {
+  background-color: #458588;
+}
+
+#wireplumber.muted {
+  background-color: #CC241D;
+}
+
+#tray {
+  background-color: #665C54;
+}
+
+#tray > .needs-attention {
+  background-color: #FB4934;
+}
+
+#idle_inhibitor {
+  background-color: #504945;
+}
+
+#idle_inhibitor.activated {
+  background-color: #8EC07C;
+  color: #1D2021;
+}
+
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}

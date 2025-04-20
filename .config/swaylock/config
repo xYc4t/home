@@ -1,0 +1,10 @@
+ignore-empty-password
+show-failed-attempts
+daemonize
+screenshots
+clock
+indicator
+fade-in=0.25
+effect-greyscale
+effect-blur=10x2
+effect-vignette=0.25:1
