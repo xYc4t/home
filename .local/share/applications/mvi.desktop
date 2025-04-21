@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=MPV Image Viewer
+Comment=View images using mpv
+Exec=fish -c 'mvi %U'
+Icon=mpv
+Terminal=false
+Type=Application
+Categories=Graphics;Viewer;
+MimeType=image/jpeg;image/png;image/gif;image/bmp;image/tiff;image/webp;image/svg+xml;
