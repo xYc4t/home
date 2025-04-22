@@ -4,5 +4,5 @@ After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/swayidle
+ExecStart=/usr/bin/swayidle -w
 Restart=on-failure
