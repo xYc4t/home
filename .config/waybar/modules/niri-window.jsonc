@@ -1,7 +1,0 @@
-{
-  "niri/window": {
-    "format": "[{title}]",
-    "icon": true,
-    "icon-size": 19
-  }
-}

@@ -1,20 +1,271 @@
 {
+  "layer": "top",
+  "position": "left",
+  "reload_style_on_change": true,
+
   "modules-left": [
+    "privacy",    
     "user",
-    "niri/workspaces",
-    "niri/window"
+    "mpris",
+    "clock",
+    "clock#2",
+    "river/window"
   ],
+
   "modules-center": [
-    "clock"
+    "river/tags"
   ],
+
   "modules-right": [
-    "tray",
+    "network#icon",
+    "network",
+    "bluetooth#icon",
+    "bluetooth",
+    "group/battery",
+    "battery",
+    "group/usage",
     "cpu",
-    "memory",
-    "disk",
-    "wireplumber",
-    "idle_inhibitor"
+    "group/control",
+    "backlight"
   ],
-  "include": ["~/.config/waybar/modules/*.jsonc"],
-  "reload_style_on_change": true
+
+  // [MODULE LEFT] //
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ],
+    "ignore-monitor": true,
+    "ignore": [
+      {
+        "type": "audio-in",
+        "name": "cava"
+      },
+      {
+        "type": "screenshare",
+        "name": "obs"
+      }
+    ]
+  },
+  
+  "user": {
+    "format": "",
+    "height": 50,
+    "width": 50,
+    "icon": true
+  },
+  
+  "mpris": {
+    "format": "{dynamic}",
+    "dynamic-len": 30,
+    "dynamic-importance-order": ["title", "position", "length", "artist", "album"],
+    "rotate": 90
+  },
+
+  "clock": {
+    "format": "{:%H}"
+  },
+
+  "clock#2": {
+    "format": "{:%M}"
+  },
+
+  "river/window": {
+    "rotate": 90,
+    "max-length": 30
+  },
+
+  // [MODULE CENTER] //
+  "river/tags": {
+    "tag-labels": ["一", "二", "三", "四", "五", "六", "七", "八", "九"],
+    "hide-vacant": true
+  },
+
+  // [MODULE RIGHT] //
+  "group/battery": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "battery#icon",
+      "idle_inhibitor#icon",
+      "idle_inhibitor",
+      "power-profiles-daemon#icon",
+      "power-profiles-daemon"
+    ]
+  },
+
+  "group/usage": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/icon#cpu",
+      "temperature",
+      "custom/icon#disk",
+      "disk",
+      "custom/icon#memory",
+      "memory",
+      "custom/icon#gpu",
+      "custom/gpu"
+    ]
+  },
+
+  "group/control": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "wireplumber#icon",
+      "backlight#icon",
+      "backlight"
+    ]
+  },
+
+  "network#icon": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-ethernet": "󰈀",
+    "format-linked": "󰈂",
+    "format-disconnected": "󰀝",
+    "format-disabled": "",
+    "format-icons": [ "󰤯", "󰤟", "󰤢", "󰤥", "󰤨" ]
+  },
+
+  "network": {
+    "format-disabled": "",
+    "format-wifi": "{signaldBm}",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ifname}",
+    "tooltip-format-disconnected": "Disconnected"
+  },
+
+  "bluetooth#icon": {
+    "tooltip": false,
+    "format": "",
+    "format-off": "󰂲",
+    "format-on": "󰂯"
+  },
+
+  "bluetooth": {
+    "format": "{status}"
+  },
+
+  "battery#icon": {
+    "tooltip": false,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}",
+    "format-charging": "󰂄",
+    "format-full": "󰚥",
+    "format-icons": [ "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹" ]
+  },
+
+  "power-profiles-daemon#icon": {
+    "tooltip": false,
+    "format-icons": {
+      "default": "",
+      "performance": "󱓞",
+      "balanced": "󰗑",
+      "power-saver": "󰌪"
+    }
+  },
+
+  "power-profiles-daemon": {
+    "format-icons": {
+      "default": "def",
+      "performance": "perf",
+      "balanced": "bal",
+      "power-saver": "psv"
+    }
+  },
+
+  "idle_inhibitor#icon": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰅶",
+      "deactivated": "󰾪"
+    }
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "on",
+      "deactivated": "off"
+    }
+  },
+
+  "custom/icon#cpu": {
+    "tooltip": false,
+    "format": "󰍛"
+  },
+
+  "cpu": {
+    "interval": 2
+  },
+
+  "custom/icon#gpu": {
+    "tooltip": false,
+    "format": "󰚗"
+  },
+
+  "custom/gpu": {
+    "exec": "$HOME/.config/waybar/gpu_usage.sh",
+    "interval": 2
+  },
+
+  "custom/icon#memory": {
+    "tooltip": false,
+    "format": "󰇖"
+  },
+
+  "memory": {
+    "interval": 2
+  },
+
+  "custom/icon#disk": {
+    "tooltip": false,
+    "format": "󰋊"
+  },
+
+  "disk": {
+    "format": "{percentage_used}%"
+  },
+
+  "backlight#icon": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": [ "󰛩", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨" ]
+  },
+
+  "wireplumber#icon": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-muted": "󰝟",
+    "format-icons": [ "󰕿", "󰖀", "󰕾" ]
+  }
 }
