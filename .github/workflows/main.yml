@@ -15,6 +15,7 @@ jobs:
           kernel-branch: lineage-22.2
           config: chopin_user_defconfig
           arch: arm64
-          aosp-clang: true
+          other-clang-url: https://github.com/ZyCromerZ/Clang/releases/download/22.0.0git-20250805-release/Clang-22.0.0git-20250805.tar.gz
           aosp-gcc: true
           anykernel3: true
+          extra-cmd: LLVM_IAS=1
