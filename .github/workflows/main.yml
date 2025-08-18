@@ -6,7 +6,7 @@ on:
 jobs:
   build-kernel:
     name: Build Kernel
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Build
         uses: dabao1955/kernel_build_action@main
@@ -15,6 +15,5 @@ jobs:
           kernel-branch: lineage-22.2
           config: chopin_user_defconfig
           arch: arm64
-          aosp-gcc: true
-          other-clang-url: https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r547379.tar.gz
+          other-clang-url: https://github.com/kdrag0n/proton-clang
           anykernel3: true
