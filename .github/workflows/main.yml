@@ -19,9 +19,11 @@ jobs:
           tar -I zstd -xf neutron-clang-10032024.tar.zst
           echo "$PWD/neutron-clang-10032024/bin" >> $GITHUB_PATH
 
-      - name: Clone AnyKernel3
+      - name: Download AnyKernel3
         run: |
-          git clone --depth=1 https://github.com/AnyKernel/AnyKernel3.git anykernel
+          wget -O anykernel.zip https://github.com/AnyKernel/AnyKernel3/archive/refs/heads/master.zip
+          unzip anykernel.zip
+          mv AnyKernel3-master anykernel
 
       - name: Configure Kernel
         run: |
