@@ -8,13 +8,45 @@ jobs:
     name: Build Kernel
     runs-on: ubuntu-latest
     steps:
-      - name: Build
-        uses: dabao1955/kernel_build_action@main
+      - name: Checkout Kernel
+        run: |
+          git clone --depth=1 -b lineage-22.2 https://github.com/xYc4t/android_kernel_xiaomi_mt6893 kernel
+          cd kernel
+          git rev-parse HEAD
+
+      - name: Download Neutron Clang
+        run: |
+          mkdir -p $HOME/clang
+          curl -L https://github.com/Neutron-Toolchains/clang-build-catalogue/releases/download/10032024/neutron-clang-10032024.tar.zst \
+            -o $HOME/clang/clang.tar.zst
+          tar -I zstd -xf $HOME/clang/clang.tar.zst -C $HOME/clang --strip-components=1
+          ls -l $HOME/clang/bin
+
+      - name: Build Kernel
+        working-directory: kernel
+        run: |
+          export PATH=$HOME/clang/bin:$PATH
+          export ARCH=arm64
+          export SUBARCH=arm64
+          export CC="clang --gcc-toolchain=$HOME/clang"
+          export CLANG_TRIPLE=aarch64-linux-gnu-
+          export CROSS_COMPILE=aarch64-linux-gnu-
+          export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
+
+          mkdir -p out
+          make O=out chopin_user_defconfig
+          make -j$(nproc) O=out
+
+      - name: Package with AnyKernel3
+        run: |
+          git clone https://github.com/osm0sis/AnyKernel3.git AnyKernel3
+          cp kernel/out/arch/arm64/boot/Image AnyKernel3/
+          cd AnyKernel3
+          zip -r9 kernel.zip *
+          mv kernel.zip $GITHUB_WORKSPACE/
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
-          kernel-url: https://github.com/xYc4t/android_kernel_xiaomi_mt6893
-          kernel-branch: lineage-22.2
-          config: chopin_user_defconfig
-          arch: arm64
-          other-clang-url: https://github.com/Neutron-Toolchains/clang-build-catalogue/releases/download/10032024/neutron-clang-10032024.tar.zst
-          extra-cmd: 'CC="clang --gcc-toolchain=$HOME/clang" CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-'
-          anykernel3: true
+          name: kernel.zip
+          path: kernel.zip
