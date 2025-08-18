@@ -18,4 +18,4 @@ jobs:
           other-clang-url: https://github.com/ZyCromerZ/Clang/releases/download/22.0.0git-20250805-release/Clang-22.0.0git-20250805.tar.gz
           aosp-gcc: true
           anykernel3: true
-          extra-cmd: LLVM_IAS=1
+          extra-cmd: LLVM=1
