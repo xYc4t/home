@@ -16,5 +16,5 @@ jobs:
           config: chopin_user_defconfig
           arch: arm64
           other-clang-url: https://github.com/Neutron-Toolchains/clang-build-catalogue/releases/download/10032024/neutron-clang-10032024.tar.zst
-          extra-cmd: CC="clang --gcc-toolchain=$HOME/clang" CLANG_TRIPLE=aarch64-linux-gnu-
+          extra-cmd: 'CC="clang --gcc-toolchain=$HOME/clang" CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-'
           anykernel3: true
