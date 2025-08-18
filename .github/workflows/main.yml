@@ -1,48 +1,20 @@
-name: Build Kernel
+
+name: CI
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  build:
+  build-kernel:
+    name: Build Kernel
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Kernel
-        uses: actions/checkout@v3
-
-      - name: Setup Clang
-        run: |
-          wget https://github.com/Neutron-Toolchains/clang-build-catalogue/releases/download/10032024/neutron-clang-10032024.tar.zst
-          tar -I zstd -xf neutron-clang-10032024.tar.zst
-          echo "$PWD/neutron-clang-10032024/bin" >> $GITHUB_PATH
-
-      - name: Clone AnyKernel3
-        run: |
-          git clone --depth=1 https://github.com/osm0sis/AnyKernel3.git anykernel
-
-      - name: Configure Kernel
-        run: |
-          cd android_kernel_xiaomi_mt6893
-          make O=out ARCH=arm64 chopin_user_defconfig
-
-      - name: Build Kernel
-        run: |
-          cd android_kernel_xiaomi_mt6893
-          make O=out ARCH=arm64 -j$(nproc)
-
-      - name: Package AnyKernel3
-        run: |
-          KERNEL_IMG=$(pwd)/android_kernel_xiaomi_mt6893/out/arch/arm64/boot/Image.gz-dtb
-          cp $KERNEL_IMG anykernel/
-          cd anykernel
-          zip -r kernel.zip *
-
-      - name: Upload AnyKernel ZIP
-        uses: actions/upload-artifact@v4
+      - name: Build
+        uses: dabao1955/kernel_build_action@main
         with:
-          name: kernel-zip
-          path: anykernel/kernel.zip
-          retention-days: 7
+          kernel-url: https://github.com/xYc4t/android_kernel_xiaomi_mt6893
+          kernel-branch: lineage-22.2
+          config: chopin_user_defconfig
+          arch: arm64
+          other-clang-url: https://github.com/kdrag0n/proton-clang/archive/refs/tags/20210522.tar.gz
+          anykernel3: true
