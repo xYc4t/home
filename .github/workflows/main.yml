@@ -1,54 +1,48 @@
-name: Kernel Build
+name: Build Kernel
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      KERNEL_REPO: https://github.com/xYc4t/android_kernel_xiaomi_mt6893
-      KERNEL_BRANCH: lineage-22.2
-      KERNEL_DEFCONFIG: chopin_user_defconfig
-      CLANG_URL: https://github.com/Neutron-Toolchains/clang-build-catalogue/releases/download/10032024/neutron-clang-10032024.tar.zst
-      ARCH: arm64
-      OUTPUT_DIR: out
 
     steps:
-      - name: Checkout kernel repo
-        run: |
-          git clone --depth=1 --branch $KERNEL_BRANCH $KERNEL_REPO kernel
-          cd kernel
+      - name: Checkout Kernel
+        uses: actions/checkout@v3
 
       - name: Setup Clang
         run: |
-          mkdir -p clang
-          curl -L $CLANG_URL -o clang.tar.zst
-          tar -I zstd -xf clang.tar.zst -C clang
-          export PATH=$PWD/clang/bin:$PATH
-          clang --version
+          wget https://github.com/Neutron-Toolchains/clang-build-catalogue/releases/download/10032024/neutron-clang-10032024.tar.zst
+          tar -I zstd -xf neutron-clang-10032024.tar.zst
+          echo "$PWD/neutron-clang-10032024/bin" >> $GITHUB_PATH
+
+      - name: Clone AnyKernel3
+        run: |
+          git clone --depth=1 https://github.com/AnyKernel/AnyKernel3.git anykernel
+
+      - name: Configure Kernel
+        run: |
+          cd android_kernel_xiaomi_mt6893
+          make O=out ARCH=arm64 chopin_user_defconfig
 
       - name: Build Kernel
         run: |
-          cd kernel
-          make O=$PWD/../$OUTPUT_DIR $KERNEL_DEFCONFIG
-          make -j$(nproc) O=$PWD/../$OUTPUT_DIR \
-            CC=clang \
-            CROSS_COMPILE=aarch64-linux-gnu- \
-            CROSS_COMPILE_ARM32=arm-linux-gnueabi-
+          cd android_kernel_xiaomi_mt6893
+          make O=out ARCH=arm64 -j$(nproc)
 
-      - name: Package with AnyKernel3
+      - name: Package AnyKernel3
         run: |
-          git clone --depth=1 https://github.com/osm0sis/AnyKernel3.git AnyKernel3
-          cp $OUTPUT_DIR/Image.gz-dtb AnyKernel3/
-          cd AnyKernel3
-          zip -r ../kernel.zip *
-          
-      - name: Upload Kernel Zip
-        uses: actions/upload-artifact@v3
+          KERNEL_IMG=$(pwd)/android_kernel_xiaomi_mt6893/out/arch/arm64/boot/Image.gz-dtb
+          cp $KERNEL_IMG anykernel/
+          cd anykernel
+          zip -r kernel.zip *
+
+      - name: Upload AnyKernel ZIP
+        uses: actions/upload-artifact@v4
         with:
-          name: kernel
-          path: kernel.zip
+          name: kernel-zip
+          path: anykernel/kernel.zip
+          retention-days: 7
