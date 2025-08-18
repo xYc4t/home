@@ -1,4 +1,3 @@
-
 name: CI
 
 on:
@@ -7,7 +6,7 @@ on:
 jobs:
   build-kernel:
     name: Build Kernel
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Build
         uses: dabao1955/kernel_build_action@main
@@ -16,5 +15,6 @@ jobs:
           kernel-branch: lineage-22.2
           config: chopin_user_defconfig
           arch: arm64
+          aosp-gcc: true
           other-clang-url: https://github.com/kdrag0n/proton-clang/archive/refs/tags/20210522.tar.gz
           anykernel3: true
