@@ -17,4 +17,3 @@ jobs:
           arch: arm64
           aosp-gcc: true
           other-clang-url: https://github.com/kdrag0n/proton-clang/archive/refs/tags/20210522.tar.gz
-          anykernel3: true
