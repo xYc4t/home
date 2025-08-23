@@ -17,3 +17,4 @@ jobs:
           arch: arm64
           aosp-gcc: true
           other-clang-url: https://github.com/kdrag0n/proton-clang/archive/refs/tags/20210522.tar.gz
+          bootimg-url: https://litter.catbox.moe/a84g78icl2a685gr.img
