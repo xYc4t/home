@@ -11,10 +11,10 @@ jobs:
       - name: Build
         uses: dabao1955/kernel_build_action@main
         with:
-          kernel-url: https://github.com/xYc4t/android_kernel_xiaomi_mt6893
-          kernel-branch: lineage-22.2
+          kernel-url: https://github.com/xYc4t/testdev
+          kernel-branch: main
           config: chopin_user_defconfig
           arch: arm64
           aosp-gcc: true
           other-clang-url: https://github.com/kdrag0n/proton-clang/archive/refs/tags/20210522.tar.gz
-          bootimg-url: https://litter.catbox.moe/a84g78icl2a685gr.img
+          anykernel3: true
