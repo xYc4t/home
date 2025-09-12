@@ -11,8 +11,8 @@ jobs:
       - name: Build
         uses: dabao1955/kernel_build_action@main
         with:
-          kernel-url: https://github.com/xYc4t/testdev
-          kernel-branch: main
+          kernel-url: https://github.com/liliumproject/kernel_xiaomi_gold
+          kernel-branch: ursinia
           config: chopin_user_defconfig
           arch: arm64
           aosp-gcc: true
