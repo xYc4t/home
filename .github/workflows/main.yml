@@ -16,5 +16,7 @@ jobs:
           config: chopin_user_defconfig
           arch: arm64
           aosp-clang: true
+          aosp-clang-version: r547379
+          aosp-gcc: true
           anykernel3: true
           extra-cmd: LLVM=1 LLVM_IAS=1
