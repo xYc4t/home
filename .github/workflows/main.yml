@@ -19,3 +19,4 @@ jobs:
           other-clang-url: https://gitlab.com/LeCmnGend/proton-clang.git
           other-clang-branch: clang-18
           anykernel3: true
+          extra-cmd: LLVM=1 LLVM_IAS=1 CC=clang
