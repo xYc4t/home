@@ -16,5 +16,6 @@ jobs:
           config: chopin_user_defconfig
           arch: arm64
           aosp-gcc: true
-          other-clang-url: https://github.com/kdrag0n/proton-clang/archive/refs/tags/20210522.tar.gz
+          other-clang-url: https://gitlab.com/LeCmnGend/proton-clang.git
+          other-clang-branch: clang-18
           anykernel3: true
