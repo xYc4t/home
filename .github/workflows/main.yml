@@ -11,7 +11,7 @@ jobs:
       - name: Build
         uses: dabao1955/kernel_build_action@main
         with:
-          kernel-url: https://github.com/xiaomi-mt6893-dev/android_kernel_xiaomi_mt6893
+          kernel-url: https://github.com/xYc4t/android_kernel_xiaomi_mt6893
           kernel-branch: 4.19-audio
           config: chopin_user_defconfig
           arch: arm64
