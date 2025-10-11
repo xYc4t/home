@@ -11,9 +11,9 @@ jobs:
       - name: Build
         uses: dabao1955/kernel_build_action@main
         with:
-          kernel-url: https://github.com/xYc4t/kernel_xiaomi_mt6893
-          kernel-branch: lineage-23.0
-          config: chopin_defconfig
+          kernel-url: https://github.com/xYc4t/android_kernel_xiaomi_mt6893
+          kernel-branch: lineage-22.2
+          config: chopin_user_defconfig
           arch: arm64
           aosp-gcc: true
           other-clang-url: https://github.com/kdrag0n/proton-clang/archive/refs/tags/20210522.tar.gz
