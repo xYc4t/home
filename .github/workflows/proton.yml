@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Build
-        uses: dabao1955/kernel_build_action@main
+        uses: dabao1955/kernel_build_action@v1.8.3
         with:
           kernel-url: https://github.com/xYc4t/android_kernel_xiaomi_mt6893
           kernel-branch: lineage-22.2
