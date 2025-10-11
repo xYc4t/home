@@ -13,7 +13,7 @@ jobs:
         with:
           kernel-url: https://github.com/xYc4t/kernel_xiaomi_mt6893
           kernel-branch: lineage-23.0
-          config: chopin_user_defconfig
+          config: chopin_defconfig
           arch: arm64
           aosp-gcc: true
           other-clang-url: https://github.com/kdrag0n/proton-clang/archive/refs/tags/20210522.tar.gz
