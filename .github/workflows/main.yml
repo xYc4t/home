@@ -11,9 +11,9 @@ jobs:
       - name: Build
         uses: dabao1955/kernel_build_action@main
         with:
-          kernel-url: https://github.com/xYc4t/android_kernel_xiaomi_mt6893
-          kernel-branch: 4.19-audio
-          config: chopin_user_defconfig
+          kernel-url: https://github.com/xYc4t/kernel_xiaomi_mt6893
+          kernel-branch: lineage-23.0
+          config: chopin_defconfig
           arch: arm64
           aosp-clang: true
           aosp-clang-version: r547379
