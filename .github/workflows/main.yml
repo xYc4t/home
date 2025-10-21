@@ -19,4 +19,4 @@ jobs:
           aosp-clang-version: r547379
           aosp-gcc: true
           anykernel3: true
-          extra-cmd: LLVM=1 LLVM_IAS=1
+          extra-make-args: ["LLVM=1", "LLVM_IAS=1"]
