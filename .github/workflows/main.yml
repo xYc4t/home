@@ -13,7 +13,7 @@ jobs:
         with:
           kernel-url: https://github.com/xYc4t/kernel_xiaomi_chopin
           kernel-branch: main
-          config: chopin_user_defconfig
+          config: chopin_defconfig
           arch: arm64
           aosp-clang: true
           aosp-clang-version: r547379
