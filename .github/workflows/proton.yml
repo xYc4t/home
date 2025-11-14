@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Build
-        uses: dabao1955/kernel_build_action@v1.8.3
+        uses: dabao1955/kernel_build_action@main
         with:
-          kernel-url: https://github.com/xYc4t/kernel_xiaomi_chopin
-          kernel-branch: T
-          config: chopin_user_defconfig
+          kernel-url: https://github.com/xYc4t/kernel_xiaomi_mt6893
+          kernel-branch: test
+          config: chopin_defconfig
           arch: arm64
           aosp-gcc: true
           other-clang-url: https://github.com/kdrag0n/proton-clang/archive/refs/tags/20210522.tar.gz
