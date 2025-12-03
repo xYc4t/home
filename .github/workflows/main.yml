@@ -18,5 +18,6 @@ jobs:
           aosp-clang: true
           aosp-clang-version: r547379
           aosp-gcc: true
+          ccache: true
           anykernel3: true
           extra-make-args: '["LLVM=1", "LLVM_IAS=1" "LD=ld.lld"]'
